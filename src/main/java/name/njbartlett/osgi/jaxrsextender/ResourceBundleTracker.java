@@ -48,14 +48,21 @@ public class ResourceBundleTracker extends BundleTracker {
         String alias = headers.get(PROP_JAXRS_ALIAS);
         String jaxrsResourceNames = headers.get(PROP_JAXRS_CLASSES);
 
-        if (alias == null || jaxrsResourceNames == null)
+        if (alias == null || jaxrsResourceNames == null) {
             return null; // ignore this bundle
+        }
+
+        // modify alias so that we can properly detect in ServletHandler that we are requesting a REST call and
+        // therefore the request should not be wrapped
+        alias = alias + ".jaxrs";
 
         ServletContainer servlet = processBundle(bundle, jaxrsResourceNames);
 
         try {
             log.log(LogService.LOG_INFO, MessageFormat.format("Registering HTTP servlet under alias \"{0}\" for JAX-RS resources in bundle {1}", alias, bundle.getLocation()));
+
             httpService.registerServlet(alias, servlet, null, new BundleHttpContext(bundle));
+
             return alias;
         } catch (ServletException e) {
             log.log(LogService.LOG_ERROR, "Error registering servlet.", e);
