@@ -6,11 +6,11 @@ Having a bit of an issue with javax.annotation.Priority not being found when the
 
 Bundles that need to be deployed to attempt to make this bundle work:
 
-- jaxrs-ri-2.4.1.jar (part of Jersey)
+- org.glassfish.jersey.bundles:jaxrs-ri:2.4.1
 - asm-all-repackaged-2.2.0-b21.jar
 - guava-14.0.1.jar
 - hk2-api-2.2.0-b21.jar
 - hk2-locator-2.2.0-b21.jar
 - hk2-utils-2.2.0-b21.jar
 - osgi-resource-locator-1.0.1.jar
-- javax.annotation-api-1.2.jar
+- org.jboss.spec.javax.annotation:jboss-annotations-api_1.2_spec:1.0.0.Final
