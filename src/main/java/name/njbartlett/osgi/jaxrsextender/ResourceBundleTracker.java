@@ -56,27 +56,50 @@ public class ResourceBundleTracker extends BundleTracker {
 
         ServletContainer servlet = processBundle(bundle, jaxrsApplication);
 
+        BundleHttpContext bundleContext = new BundleHttpContext(bundle);
+
         try {
             log.log(LogService.LOG_INFO, "Registering HTTP servlet under alias " + alias +
                     " for JAX-RS resources in bundle " + bundle.getLocation());
 
-            httpService.registerServlet(alias, servlet, null, new BundleHttpContext(bundle));
+            httpService.registerServlet(alias, servlet, null, bundleContext);
 
             return alias;
         } catch (ServletException e) {
             log.log(LogService.LOG_ERROR, "Error registering servlet.", e);
             return null;
         } catch (NamespaceException e) {
-            log.log(LogService.LOG_ERROR, "Error registering servlet.", e);
-            return null;
+            try {
+                // TODO: happens in case of hot redeploy (pretty sucky design that remove is not called first) :(
+                // so unregister first (though this might fail if we're not in the hot redeploy scenario)
+                httpService.unregister(alias);
+                // and attempt registering again
+                // however, this does not work as unregister doesn't appear to do anything and register fails again :(
+                httpService.registerServlet(alias, servlet, null, bundleContext);
+
+                return alias;
+            } catch (Exception ex) {
+                log.log(LogService.LOG_ERROR, "Error registering servlet.", ex);
+                return null;
+            }
         }
+    }
+
+    @Override
+    public void modifiedBundle(Bundle bundle, BundleEvent event, Object object) {
+        removedBundle(bundle, event, object);
+        addingBundle(bundle, event);
     }
 
     @Override
     public void removedBundle(Bundle bundle, BundleEvent event, Object object) {
         String alias = (String) object;
+
+        alias = alias + ".jaxrs";
+
         log.log(LogService.LOG_INFO, "Unregistering HTTP servlet under alias " + alias + " for JAX-RS resources in bundle "
                 + bundle.getLocation());
+
         httpService.unregister(alias);
     }
 
