@@ -22,13 +22,12 @@ import org.osgi.util.tracker.BundleTracker;
 
 import javax.servlet.ServletException;
 import java.text.MessageFormat;
+import javax.ws.rs.core.Application;
 import java.util.Dictionary;
-import java.util.HashSet;
-import java.util.Set;
 
 public class ResourceBundleTracker extends BundleTracker {
     public static final String PROP_JAXRS_ALIAS = "JAX-RS-Alias";
-    public static final String PROP_JAXRS_CLASSES = "JAX-RS-Classes";
+    public static final String PROP_JAXRS_APPLICATION = "JAX-RS-Application";
 
     private final LogService log;
     private final HttpService httpService;
@@ -46,9 +45,9 @@ public class ResourceBundleTracker extends BundleTracker {
         Dictionary<String, String> headers = bundle.getHeaders();
 
         String alias = headers.get(PROP_JAXRS_ALIAS);
-        String jaxrsResourceNames = headers.get(PROP_JAXRS_CLASSES);
+        String jaxrsApplication = headers.get(PROP_JAXRS_APPLICATION);
 
-        if (alias == null || jaxrsResourceNames == null) {
+        if (alias == null || jaxrsApplication == null) {
             return null; // ignore this bundle
         }
 
@@ -56,7 +55,7 @@ public class ResourceBundleTracker extends BundleTracker {
         // therefore the request should not be wrapped
         alias = alias + ".jaxrs";
 
-        ServletContainer servlet = processBundle(bundle, jaxrsResourceNames);
+        ServletContainer servlet = processBundle(bundle, jaxrsApplication);
 
         try {
             log.log(LogService.LOG_INFO, MessageFormat.format("Registering HTTP servlet under alias \"{0}\" for JAX-RS resources in bundle {1}", alias, bundle.getLocation()));
@@ -80,22 +79,17 @@ public class ResourceBundleTracker extends BundleTracker {
         httpService.unregister(alias);
     }
 
-    private ServletContainer processBundle(Bundle bundle, String concatenatedResourceNames) {
-        final String[] resourceNames = concatenatedResourceNames.split(",");
-        final Set<Class<?>> classes = new HashSet<Class<?>>();
-        for (String resourceName : resourceNames) {
-            resourceName = resourceName.trim();
-            try {
-                classes.add(bundle.loadClass(resourceName));
-            } catch (Exception e) {
-                log.log(LogService.LOG_ERROR, MessageFormat.format("Error loading class \"{0}\" from bundle \"{1}\".",
-                        resourceName, bundle.getLocation()), e);
-            }
+    private ServletContainer processBundle(Bundle bundle, String applicationName) {
+        Application application = null;
+        try {
+            Class<?> applicationClass = bundle.loadClass(applicationName);
+            application = (Application) applicationClass.newInstance();
+        } catch (Exception e) {
+            log.log(LogService.LOG_ERROR, "Error loading application class " + applicationName + " from bundle "
+                    + bundle.getLocation(), e);
         }
 
-        if (classes.isEmpty()) return null;
-
-        return new ServletContainer(new ResourceConfig(classes));
+        return new ServletContainer(ResourceConfig.forApplication(application));
     }
 
 }
