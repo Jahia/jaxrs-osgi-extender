@@ -21,7 +21,6 @@ import org.osgi.service.log.LogService;
 import org.osgi.util.tracker.BundleTracker;
 
 import javax.servlet.ServletException;
-import java.text.MessageFormat;
 import javax.ws.rs.core.Application;
 import java.util.Dictionary;
 
@@ -58,7 +57,8 @@ public class ResourceBundleTracker extends BundleTracker {
         ServletContainer servlet = processBundle(bundle, jaxrsApplication);
 
         try {
-            log.log(LogService.LOG_INFO, MessageFormat.format("Registering HTTP servlet under alias \"{0}\" for JAX-RS resources in bundle {1}", alias, bundle.getLocation()));
+            log.log(LogService.LOG_INFO, "Registering HTTP servlet under alias " + alias +
+                    " for JAX-RS resources in bundle " + bundle.getLocation());
 
             httpService.registerServlet(alias, servlet, null, new BundleHttpContext(bundle));
 
@@ -75,7 +75,8 @@ public class ResourceBundleTracker extends BundleTracker {
     @Override
     public void removedBundle(Bundle bundle, BundleEvent event, Object object) {
         String alias = (String) object;
-        log.log(LogService.LOG_INFO, MessageFormat.format("Unregistering HTTP servlet under alias \"{0}\" for JAX-RS resources in bundle {1}", alias, bundle.getLocation()));
+        log.log(LogService.LOG_INFO, "Unregistering HTTP servlet under alias " + alias + " for JAX-RS resources in bundle "
+                + bundle.getLocation());
         httpService.unregister(alias);
     }
 
