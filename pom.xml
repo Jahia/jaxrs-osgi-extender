@@ -56,13 +56,6 @@
             <version>${jersey.version}</version>
             <scope>provided</scope>
         </dependency>
-        <!-- So that we can use the same version than the one used in jaxrs-ri bundle -->
-        <!--<dependency>
-            <groupId>javax.annotation</groupId>
-            <artifactId>javax.annotation-api</artifactId>
-            <version>1.2</version>
-            <scope>compile</scope>
-        </dependency>-->
     </dependencies>
 
     <build>
@@ -80,14 +73,11 @@
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Bundle-Description>${project.description}</Bundle-Description>
 
-                        <Private-Package>
-                            name.njbartlett.osgi.jaxrsextender
-                        </Private-Package>
+                        <Private-Package>name.njbartlett.osgi.jaxrsextender</Private-Package>
 
                         <Bundle-Activator>name.njbartlett.osgi.jaxrsextender.Activator</Bundle-Activator>
 
                         <Import-Package>
-                            <!--javax.annotation.security, trying to force using the javax.annotation-api bundle -->
                             javax.servlet,
                             javax.servlet.http,
                             javax.ws.rs.core,
