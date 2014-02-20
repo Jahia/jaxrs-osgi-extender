@@ -81,8 +81,7 @@
                         <Bundle-Description>${project.description}</Bundle-Description>
 
                         <Private-Package>
-                            name.njbartlett.osgi.jaxrsextender,
-                            name.njbartlett.osgi.utils
+                            name.njbartlett.osgi.jaxrsextender
                         </Private-Package>
 
                         <Bundle-Activator>name.njbartlett.osgi.jaxrsextender.Activator</Bundle-Activator>
