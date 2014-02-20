@@ -16,11 +16,9 @@ import org.osgi.framework.Bundle;
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.BundleEvent;
 import org.osgi.service.http.HttpService;
-import org.osgi.service.http.NamespaceException;
 import org.osgi.service.log.LogService;
 import org.osgi.util.tracker.BundleTracker;
 
-import javax.servlet.ServletException;
 import javax.ws.rs.core.Application;
 import java.util.Dictionary;
 
@@ -52,6 +50,7 @@ public class ResourceBundleTracker extends BundleTracker {
 
         // modify alias so that we can properly detect in ServletHandler that we are requesting a REST call and
         // therefore the request should not be wrapped
+        String initialAlias = alias; // record the initial alias since that's what is recorded internally and return that
         alias = alias + ".jaxrs";
 
         ServletContainer servlet = processBundle(bundle, jaxrsApplication);
@@ -64,24 +63,10 @@ public class ResourceBundleTracker extends BundleTracker {
 
             httpService.registerServlet(alias, servlet, null, bundleContext);
 
-            return alias;
-        } catch (ServletException e) {
+            return initialAlias;
+        } catch (Exception e) {
             log.log(LogService.LOG_ERROR, "Error registering servlet.", e);
             return null;
-        } catch (NamespaceException e) {
-            try {
-                // TODO: happens in case of hot redeploy (pretty sucky design that remove is not called first) :(
-                // so unregister first (though this might fail if we're not in the hot redeploy scenario)
-                httpService.unregister(alias);
-                // and attempt registering again
-                // however, this does not work as unregister doesn't appear to do anything and register fails again :(
-                httpService.registerServlet(alias, servlet, null, bundleContext);
-
-                return alias;
-            } catch (Exception ex) {
-                log.log(LogService.LOG_ERROR, "Error registering servlet.", ex);
-                return null;
-            }
         }
     }
 
@@ -94,8 +79,6 @@ public class ResourceBundleTracker extends BundleTracker {
     @Override
     public void removedBundle(Bundle bundle, BundleEvent event, Object object) {
         String alias = (String) object;
-
-        alias = alias + ".jaxrs";
 
         log.log(LogService.LOG_INFO, "Unregistering HTTP servlet under alias " + alias + " for JAX-RS resources in bundle "
                 + bundle.getLocation());
