@@ -10,7 +10,6 @@
  ******************************************************************************/
 package name.njbartlett.osgi.jaxrsextender;
 
-import name.njbartlett.osgi.utils.LogTracker;
 import org.osgi.framework.BundleActivator;
 import org.osgi.framework.BundleContext;
 

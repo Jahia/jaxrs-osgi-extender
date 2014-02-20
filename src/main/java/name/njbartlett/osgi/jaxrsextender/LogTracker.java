@@ -8,7 +8,7 @@
  * Contributors:
  *     Neil Bartlett - initial API and implementation
  ******************************************************************************/
-package name.njbartlett.osgi.utils;
+package name.njbartlett.osgi.jaxrsextender;
 
 import org.osgi.framework.BundleContext;
 import org.osgi.framework.ServiceReference;
