@@ -119,9 +119,9 @@
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Bundle-Description>${project.description}</Bundle-Description>
 
-                        <Private-Package>name.njbartlett.osgi.jaxrsextender</Private-Package>
+                        <Private-Package>org.jahia.modules.jaxrs_osgi_extender</Private-Package>
 
-                        <Bundle-Activator>name.njbartlett.osgi.jaxrsextender.Activator</Bundle-Activator>
+                        <Bundle-Activator>org.jahia.modules.jaxrs_osgi_extender.Activator</Bundle-Activator>
 
                         <Import-Package>
                             javax.servlet,

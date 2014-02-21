@@ -8,7 +8,7 @@
  * Contributors:
  *     Neil Bartlett - initial API and implementation
  ******************************************************************************/
-package name.njbartlett.osgi.jaxrsextender;
+package org.jahia.modules.jaxrs_osgi_extender;
 
 import org.osgi.framework.Bundle;
 import org.osgi.service.http.HttpContext;
