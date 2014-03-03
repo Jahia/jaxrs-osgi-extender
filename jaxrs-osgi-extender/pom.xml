@@ -11,6 +11,9 @@
 
     <artifactId>jaxrs-osgi-extender</artifactId>
     <packaging>bundle</packaging>
+    <description>
+        An OSGi extender to publish JAX-RS 2 applications to OSGi's HTTP Service. Contains Jahia Digital Factory specific behavior though.
+    </description>
 
     <dependencies>
         <dependency>

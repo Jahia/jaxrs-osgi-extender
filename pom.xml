@@ -13,7 +13,7 @@
     <artifactId>jaxrs-osgi-extender-bom</artifactId>
     <version>1.0.0-SNAPSHOT</version>
     <packaging>pom</packaging>
-    <description>An OSGi extender to publish JAX-RS 2 applications to OSGi's HTTP Service. Contains Jahia Digital Factory specific behavior though.</description>
+    <description>JAX-RS OSGi Extender Bill Of Materials (BOM)</description>
 
     <scm>
         <connection>scm:git:git@github.com:Jahia/jaxrs-osgi-extender.git</connection>
