@@ -11,7 +11,7 @@
 
     <artifactId>jaxrs-osgi-extender</artifactId>
     <packaging>bundle</packaging>
-    <name>JAX-RS OSGi Extender</name>
+    <name>Jahia JAX-RS OSGi Extender</name>
     <description>
         An OSGi extender to publish JAX-RS 2 applications to OSGi's HTTP Service. Contains Jahia Digital Factory specific behavior though.
     </description>
@@ -83,6 +83,8 @@
                         <Private-Package>org.jahia.modules.jaxrs_osgi_extender</Private-Package>
 
                         <Bundle-Activator>org.jahia.modules.jaxrs_osgi_extender.Activator</Bundle-Activator>
+						
+						<Jahia-Module-Type>system</Jahia-Module-Type>
 
                         <Import-Package>
                             javax.servlet,
