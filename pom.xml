@@ -93,6 +93,21 @@
         <url>scm:git:git@github.com:Jahia/jaxrs-osgi-extender.git</url>
     </scm>
 
+    <repositories>
+        <repository>
+            <id>jahia-public</id>
+            <name>Jahia Public Repository</name>
+            <url>https://devtools.jahia.com/nexus/content/groups/public</url>
+            <releases>
+                <enabled>true</enabled>
+                <updatePolicy>never</updatePolicy>
+            </releases>
+            <snapshots>
+                <enabled>true</enabled>
+            </snapshots>
+        </repository>
+    </repositories>
+
     <properties>
         <jersey.version>2.6</jersey.version>
         <jersey-guava-jahia.version>2.6-jahia1</jersey-guava-jahia.version>
