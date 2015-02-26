@@ -109,11 +109,10 @@
     </repositories>
 
     <properties>
-        <jersey.version>2.6</jersey.version>
-        <jersey-guava-jahia.version>2.6-jahia1</jersey-guava-jahia.version>
+        <jersey.version>2.16</jersey.version>
         <osgi.version>4.3.1</osgi.version>
-        <jaxrs.api.version>2.0</jaxrs.api.version>
-        <hk2.version>2.2.0</hk2.version>
+        <jaxrs.api.version>2.0.1</jaxrs.api.version>
+        <hk2.version>2.4.0-b11</hk2.version>
     </properties>
 
     <pluginRepositories>
@@ -187,7 +186,7 @@
             <dependency>
                 <groupId>org.glassfish.jersey.bundles.repackaged</groupId>
                 <artifactId>jersey-guava</artifactId>
-                <version>${jersey-guava-jahia.version}</version>
+                <version>${jersey.version}</version>
                 <scope>runtime</scope>
             </dependency>
             <dependency>

@@ -72,7 +72,8 @@
         For more information, please visit http://www.jahia.com
 
 -->
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>org.jahia.modules</groupId>
@@ -154,8 +155,8 @@
                         <Private-Package>org.jahia.modules.jaxrs_osgi_extender</Private-Package>
 
                         <Bundle-Activator>org.jahia.modules.jaxrs_osgi_extender.Activator</Bundle-Activator>
-						
-						<Jahia-Module-Type>system</Jahia-Module-Type>
+
+                        <Jahia-Module-Type>system</Jahia-Module-Type>
 
                         <Import-Package>
                             javax.servlet,
