@@ -113,7 +113,7 @@
         <jersey-guava-jahia.version>2.6-jahia1</jersey-guava-jahia.version>
         <osgi.version>4.3.1</osgi.version>
         <jaxrs.api.version>2.0</jaxrs.api.version>
-        <hk2.version>2.2.0</hk2.version>
+        <hk2.version>2.4.0-b16</hk2.version>
     </properties>
 
     <pluginRepositories>
