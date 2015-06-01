@@ -83,7 +83,7 @@
 
     <artifactId>jaxrs-osgi-extender-bom</artifactId>
     <name>JAX-RS OSGi Extender BOM</name>
-    <version>2.0.2-RC</version>
+    <version>2.0.2-SNAPSHOT</version>
     <packaging>pom</packaging>
     <description>JAX-RS OSGi Extender Bill Of Materials (BOM)</description>
 
@@ -91,7 +91,7 @@
         <connection>scm:git:git@github.com:Jahia/jaxrs-osgi-extender.git</connection>
         <developerConnection>scm:git:git@github.com:Jahia/jaxrs-osgi-extender.git</developerConnection>
         <url>scm:git:git@github.com:Jahia/jaxrs-osgi-extender.git</url>
-      <tag>2_0_2_RC</tag>
+      <tag>HEAD</tag>
   </scm>
 
     <repositories>
