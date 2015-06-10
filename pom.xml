@@ -110,11 +110,10 @@
     </repositories>
 
     <properties>
-        <jersey.version>2.6</jersey.version>
-        <jersey-guava-jahia.version>2.6-jahia1</jersey-guava-jahia.version>
+        <jersey.version>2.18</jersey.version>
         <osgi.version>4.3.1</osgi.version>
         <jaxrs.api.version>2.0</jaxrs.api.version>
-        <hk2.version>2.4.0-b16</hk2.version>
+        <hk2.version>2.4.0-b25</hk2.version>
     </properties>
 
     <pluginRepositories>
@@ -161,34 +160,47 @@
                 <version>${jersey.version}</version>
                 <scope>provided</scope>
             </dependency>
+            <!-- For test purposes -->
+            <dependency>
+                <groupId>org.glassfish.jersey.test-framework.providers</groupId>
+                <artifactId>jersey-test-framework-provider-jdk-http</artifactId>
+                <version>${jersey.version}</version>
+                <scope>test</scope>
+            </dependency>
+            <dependency>
+                <groupId>org.glassfish.jersey.test-framework</groupId>
+                <artifactId>jersey-test-framework-core</artifactId>
+                <version>${jersey.version}</version>
+                <scope>test</scope>
+            </dependency>
             <dependency>
                 <groupId>org.glassfish.hk2</groupId>
                 <artifactId>hk2-api</artifactId>
                 <version>${hk2.version}</version>
-                <scope>runtime</scope>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.glassfish.hk2</groupId>
                 <artifactId>hk2-locator</artifactId>
                 <version>${hk2.version}</version>
-                <scope>runtime</scope>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.glassfish.hk2</groupId>
                 <artifactId>hk2-utils</artifactId>
                 <version>${hk2.version}</version>
-                <scope>runtime</scope>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.glassfish.hk2.external</groupId>
                 <artifactId>asm-all-repackaged</artifactId>
                 <version>${hk2.version}</version>
-                <scope>runtime</scope>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.glassfish.jersey.bundles.repackaged</groupId>
                 <artifactId>jersey-guava</artifactId>
-                <version>${jersey-guava-jahia.version}</version>
+                <version>${jersey.version}</version>
                 <scope>runtime</scope>
             </dependency>
             <dependency>
