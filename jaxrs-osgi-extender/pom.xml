@@ -84,7 +84,7 @@
     <packaging>bundle</packaging>
     <name>Jahia JAX-RS OSGi Extender</name>
     <description>
-        An OSGi extender to publish JAX-RS 2 applications to OSGi's HTTP Service. Contains Jahia Digital Factory specific behavior though.
+        An OSGi extender to publish JAX-RS 2 applications to OSGi's HTTP Service. Contains Jahia Digital Experience Manager specific behavior though.
     </description>
 
     <dependencies>
