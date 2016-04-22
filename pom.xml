@@ -182,6 +182,12 @@
                 <scope>runtime</scope>
             </dependency>
             <dependency>
+                <groupId>org.glassfish.jersey.media</groupId>
+                <artifactId>jersey-media-sse</artifactId>
+                <version>${jersey.version}</version>
+                <scope>runtime</scope>
+            </dependency>
+            <dependency>
                 <groupId>org.glassfish.hk2</groupId>
                 <artifactId>osgi-resource-locator</artifactId>
                 <version>1.0.1</version>
