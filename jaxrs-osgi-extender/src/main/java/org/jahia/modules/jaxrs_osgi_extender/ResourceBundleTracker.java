@@ -53,6 +53,7 @@ import org.osgi.service.log.LogService;
 import org.osgi.util.tracker.BundleTracker;
 
 import javax.ws.rs.core.Application;
+import java.lang.reflect.Constructor;
 import java.util.Dictionary;
 
 public class ResourceBundleTracker extends BundleTracker {
@@ -123,13 +124,18 @@ public class ResourceBundleTracker extends BundleTracker {
         Application application = null;
         try {
             Class<?> applicationClass = bundle.loadClass(applicationName);
-            application = (Application) applicationClass.newInstance();
+            Constructor con = null;
+            try {
+                con = applicationClass.getDeclaredConstructor(new Class<?>[]{BundleContext.class});
+            } catch(NoSuchMethodException ex) {
+                //Do nothing.
+            }
+            application = con != null ? (Application) con.newInstance(bundle.getBundleContext()) : (Application) applicationClass.newInstance();
+
         } catch (Exception e) {
             log.log(LogService.LOG_ERROR, "Error loading application class " + applicationName + " from bundle "
-                    + bundle.getLocation(), e);
+                    + bundle.getLocation().toString(), e);
         }
-
         return new ServletContainer(ResourceConfig.forApplication(application));
     }
-
 }
