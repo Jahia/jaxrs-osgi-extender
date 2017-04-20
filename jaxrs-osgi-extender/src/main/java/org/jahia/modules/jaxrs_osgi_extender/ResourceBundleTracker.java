@@ -125,11 +125,16 @@ public class ResourceBundleTracker extends BundleTracker {
         try {
             Class<?> applicationClass = bundle.loadClass(applicationName);
             Constructor con = null;
+
             try {
+                //Try to obtain the BundleContext constructor if it exists. We require it if we are trying to
+                //register the Api entry point class as a service.
                 con = applicationClass.getDeclaredConstructor(new Class<?>[]{BundleContext.class});
             } catch(NoSuchMethodException ex) {
                 //Do nothing.
             }
+            //If we were able to obtain the application class constructor then instantiate class passing the bundleContext, otherwise
+            //instantiate class with default constructor.
             application = con != null ? (Application) con.newInstance(bundle.getBundleContext()) : (Application) applicationClass.newInstance();
 
         } catch (Exception e) {
