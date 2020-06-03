@@ -83,7 +83,6 @@
 
     <properties>
         <jersey.version>2.18</jersey.version>
-        <osgi.version>4.3.1</osgi.version>
         <jaxrs.api.version>2.0</jaxrs.api.version>
         <hk2.version>2.4.0-b25</hk2.version>
     </properties>
@@ -114,8 +113,8 @@
             </dependency>
             <dependency>
                 <groupId>org.osgi</groupId>
-                <artifactId>org.osgi.compendium</artifactId>
-                <version>${osgi.version}</version>
+                <artifactId>osgi.cmpn</artifactId>
+                <version>${osgi.compendium.version}</version>
                 <scope>provided</scope>
             </dependency>
             <dependency>
@@ -145,6 +144,8 @@
                 <version>${jersey.version}</version>
                 <scope>test</scope>
             </dependency>
+
+            <!-- jax dependencies are provided by Jahia feature: jax-rs as bundles -->
             <dependency>
                 <groupId>org.glassfish.hk2</groupId>
                 <artifactId>hk2-api</artifactId>
@@ -173,32 +174,33 @@
                 <groupId>org.glassfish.jersey.bundles.repackaged</groupId>
                 <artifactId>jersey-guava</artifactId>
                 <version>${jersey.version}</version>
-                <scope>runtime</scope>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.glassfish.jersey.media</groupId>
                 <artifactId>jersey-media-multipart</artifactId>
                 <version>${jersey.version}</version>
-                <scope>runtime</scope>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.glassfish.jersey.media</groupId>
                 <artifactId>jersey-media-sse</artifactId>
                 <version>${jersey.version}</version>
-                <scope>runtime</scope>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.glassfish.hk2</groupId>
                 <artifactId>osgi-resource-locator</artifactId>
                 <version>1.0.1</version>
-                <scope>runtime</scope>
+                <scope>provided</scope>
             </dependency>
             <dependency>
                 <groupId>org.jboss.spec.javax.annotation</groupId>
                 <artifactId>jboss-annotations-api_1.2_spec</artifactId>
                 <version>1.0.0.Final</version>
-                <scope>runtime</scope>
+                <scope>provided</scope>
             </dependency>
+
             <dependency>
                 <!-- Needed for multi-part support -->
                 <groupId>org.jvnet.mimepull</groupId>
