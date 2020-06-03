@@ -66,7 +66,7 @@
         </dependency>
         <dependency>
             <groupId>org.osgi</groupId>
-            <artifactId>org.osgi.compendium</artifactId>
+            <artifactId>osgi.cmpn</artifactId>
         </dependency>
         <dependency>
             <groupId>javax.servlet</groupId>
@@ -122,7 +122,7 @@
                     <instructions>
                         <Bundle-SymbolicName>${project.artifactId}</Bundle-SymbolicName>
                         <Bundle-Description>${project.description}</Bundle-Description>
-                        <Jahia-Signature>MC0CFQCJ+O/wNRNuAP/ex9N4isccX/2IXgIUZN7HvJeSmYzIaEGh6SfWLSYj1HM=</Jahia-Signature>
+                        <Jahia-Signature>MC0CFGtQl6ONbFVlzAC0ScLGFIWRbi9IAhUAiMmVzpHEl4NKixbLx53Vnd8Ja8M=</Jahia-Signature>
 
                         <Private-Package>org.jahia.modules.jaxrs_osgi_extender</Private-Package>
 
