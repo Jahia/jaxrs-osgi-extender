@@ -9,6 +9,11 @@ Based on https://github.com/njbartlett/jaxrs-osgi-extender but updated to use JA
 Required dependent bundles are org.glassfish.jersey.bundles:jaxrs-ri:2.6 and its dependencies.
 See pom.xml for more details, they are marked as runtime dependencies.
 
+
+## Moved to Jahia Core
+
+This module was moved to jahia-core: https://github.com/Jahia/jahia/tree/master/bundles/jaxrs-osgi-extender, this was handled in BACKLOG-15867 (April 2021).
+
 ## Open-Source
 
 This is an Open-Source module, you can find more details about Open-Source @ Jahia [in this repository](https://github.com/Jahia/open-source).
