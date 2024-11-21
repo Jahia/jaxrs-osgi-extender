@@ -84,7 +84,7 @@
     <properties>
         <jersey.version>2.18</jersey.version>
         <jaxrs.api.version>2.0</jaxrs.api.version>
-        <hk2.version>2.4.0-b25</hk2.version>
+        <hk2.version>2.5.0-b60</hk2.version>
     </properties>
 
     <pluginRepositories>
